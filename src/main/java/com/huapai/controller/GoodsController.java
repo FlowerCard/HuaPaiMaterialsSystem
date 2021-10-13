@@ -26,6 +26,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/goods")
 public class GoodsController {
+    //
     
     @Resource
     private IGoodsService goodsService;
