@@ -61,6 +61,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public ResultVO login(String username, String password) {
         resultVO = new ResultVO();
+        resultVO.setCode(1);
         User user = userDao.selectByUsernameUser(username);
         if (user != null) {
             if (user.getPassword().equals(password)) {
