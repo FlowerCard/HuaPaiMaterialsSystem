@@ -97,4 +97,10 @@ public class UserController {
         return resultVO;
     }
     
+    @RequestMapping("/signOut")
+    public String signOut(HttpSession session){
+        session.invalidate();
+        return "redirect:login.jsp";
+    }
+    
 }

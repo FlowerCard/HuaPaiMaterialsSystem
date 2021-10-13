@@ -19,9 +19,9 @@
                     ${userInfo.nickname}
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">个人信息</a></dd>
+                    <dd><a href="http://localhost/users/userInfo.jsp?id=${userInfo.id}" target="body">个人信息</a></dd>
                     <dd><a href="">设置</a></dd>
-                    <dd><a href="">登出</a></dd>
+                    <dd><a href="http://localhost/users/signOut">登出</a></dd>
                 </dl>
             </li>
         </ul>

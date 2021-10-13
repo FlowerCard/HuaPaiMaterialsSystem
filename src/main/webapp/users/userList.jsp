@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
         <meta charset="utf-8">
@@ -58,11 +59,11 @@
                         {type: 'checkbox', fixed: 'left'}
                         ,{field:'id', title:'ID', width:80, fixed: 'left', unresize: true, sort: true}
                         ,{field:'username', title:'用户名', width:120, edit: 'text'}
-                        ,{field:'password', title:'密码', width:100, edit: 'text'}
                         ,{field:'nickname', title:'昵称', width:120, edit: 'text', sort: true}
                         ,{field:'telephone', title:'电话', width:150}
-                        ,{field:'address', title:'地址', width:100}
-                        ,{field:'isAdmin', title:'身份', width:100,templet:function (res) {
+                        ,{field:'address', title:'地址', width:600}
+                        <c:if test="${userInfo.isAdmin == 1}">
+                            ,{field:'isAdmin', title:'身份', width:100,templet:function (res) {
                                     if (res.isAdmin==1){
                                         return "管理员";
                                     }else if (res.isAdmin==0){
@@ -70,16 +71,17 @@
                                     } else {
                                         return "异常";
                                     }
-                            }}
-                        ,{field:'isDelete', title:'状态', width:100,templet:function (res) {
-                                if (res.isDelete==1){
-                                    return "已注销";
-                                }else if (res.isDelete==0){
-                                    return "正常";
-                                } else {
-                                    return "异常";
-                                }
-                            }}
+                                }}
+                            ,{field:'isDelete', title:'状态', width:100,templet:function (res) {
+                                    if (res.isDelete==1){
+                                        return "已注销";
+                                    }else if (res.isDelete==0){
+                                        return "正常";
+                                    } else {
+                                        return "异常";
+                                    }
+                                }}
+                        </c:if>
                         ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
                     ]]
                     ,page: true

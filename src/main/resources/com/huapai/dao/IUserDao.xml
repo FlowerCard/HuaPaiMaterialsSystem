@@ -86,8 +86,7 @@
                is_admin,
                is_delete
         from t_user
-        where is_delete != 1
-        and id = #{id}
+        where id = #{id}
     </select>
 
     <insert id="insertUser" parameterType="user" useGeneratedKeys="true" keyProperty="id">
