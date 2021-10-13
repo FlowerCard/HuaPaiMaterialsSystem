@@ -45,8 +45,6 @@
                         $("#nickname").val(ret.nickname);
                         $("#address").val(ret.address);
                         $("#telephone").val(ret.telephone);
-                        $("#isAdmin").val(ret.isAdmin);
-                        $("#isDelete").val(ret.isDelete);
                     }
                 })
             })
@@ -122,28 +120,6 @@
                                class="layui-input">
                     </div>
                     <div class="layui-form-mid layui-word-aux">请输入你的住址</div>
-                </div>
-
-                <div class="layui-form-item">
-                    <label class="layui-form-label">
-                        管理员
-                    </label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="isAdmin" id="isAdmin" required lay-verify="phone" placeholder="0==商户,1==管理员" autocomplete="off"
-                               class="layui-input">
-                    </div>
-                    <div class="layui-form-mid layui-word-aux">0==商户,1==管理员</div>
-                </div>
-
-                <div class="layui-form-item">
-                    <label class="layui-form-label">
-                        注销状态
-                    </label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="isDelete" id="isDelete" required lay-verify="phone" placeholder="0==正常,1==注销" autocomplete="off"
-                               class="layui-input">
-                    </div>
-                    <div class="layui-form-mid layui-word-aux">0==正常,1==注销</div>
                 </div>
 
                 <div class="layui-form-item">

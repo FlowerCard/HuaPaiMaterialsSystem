@@ -79,9 +79,21 @@ public class UserController {
     }
     
     @RequestMapping("/modifyUser")
-    public String modifyUser(User user){
+    public String modifyUser(User user, HttpSession session){
         userService.modifyUser(user);
-        return "redirect:/users/userList.jsp";
+        User userInfo = (User) session.getAttribute("userInfo");
+        
+        if (user.getPassword().equals(userInfo.getPassword())) {
+            return "redirect:/users/userList.jsp";
+        } else {
+            //ID相同判断为同一个用户
+            if (user.getId().equals(userInfo.getId())) {
+                session.invalidate();
+                return "redirect:login.jsp";
+            }
+            return "redirect:/users/userList.jsp";
+        }
+        
     }
     
     @DeleteMapping("users/{id}")
