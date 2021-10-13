@@ -65,5 +65,9 @@
     <delete id="deleteById">
         delete from t_goods where id=#{id}
     </delete>
+    
+    <select id="searchByTypeId" resultType="integer">
+        select id from t_goods where goods_type=#{typeId}
+    </select>
 
 </mapper>

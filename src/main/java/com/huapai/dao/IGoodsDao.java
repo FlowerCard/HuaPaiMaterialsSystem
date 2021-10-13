@@ -47,5 +47,12 @@ public interface IGoodsDao {
      * @return 受影响行数
      */
     public Integer deleteById(Integer id);
+
+    /**
+     * 通过类型id查询商品
+     * @param typeId 类型id
+     * @return 商品id集合
+     */
+    public List<Integer> searchByTypeId(Integer typeId);
     
 }

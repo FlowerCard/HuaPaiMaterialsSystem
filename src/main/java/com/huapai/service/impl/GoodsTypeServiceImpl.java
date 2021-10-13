@@ -1,12 +1,15 @@
 package com.huapai.service.impl;
 
+import com.huapai.dao.IGoodsDao;
 import com.huapai.dao.IGoodsTypeDao;
+import com.huapai.entity.Goods;
 import com.huapai.entity.GoodsType;
 import com.huapai.service.IGoodsTypeService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +24,9 @@ public class GoodsTypeServiceImpl implements IGoodsTypeService {
     
     @Resource
     private IGoodsTypeDao goodsTypeDao;
+    
+    @Resource
+    private IGoodsDao goodsDao;
     
     @Override
     public List<GoodsType> searchAll() {
@@ -39,7 +45,25 @@ public class GoodsTypeServiceImpl implements IGoodsTypeService {
 
     @Override
     public void modifyGoodsType(GoodsType goodsType) {
+        //查商品类型下有没有子项
+        GoodsType beforeType = goodsTypeDao.selectById(goodsType.getId());
+        Integer row = goodsTypeDao.hasItem(beforeType.getTypeId());
+        //如果子项就把子项的产品类型ID一起修改掉
+        if (row != 0) {
+            List<Integer> goodsIdList = goodsDao.searchByTypeId(beforeType.getTypeId());
+            List<Goods> goodsList = new ArrayList<>();
+            //把对应的商品ID查出来
+            for (Integer goodId : goodsIdList) {
+                Goods goods = goodsDao.selectById(goodId);
+                //修改每个ID对应的商品并放入集合
+                goods.setGoodsType(goodsType.getTypeId());
+                goodsList.add(goods);
+            }
+            for (Goods goods : goodsList) {
+                goodsDao.updateGoods(goods);
+            }
         goodsTypeDao.updateGoodsType(goodsType);
+        }
     }
 
     @Override
