@@ -81,8 +81,8 @@
                                         return "异常";
                                     }
                                 }}
+                            ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
                         </c:if>
-                        ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
                     ]]
                     ,page: true
                 });
