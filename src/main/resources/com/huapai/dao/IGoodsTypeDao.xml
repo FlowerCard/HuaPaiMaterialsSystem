@@ -19,6 +19,10 @@
         select id, type_id, type_name, type_info from t_goods_type where id = #{id}
     </select>
     
+    <select id="searchByTypeId" resultType="integer">
+        select id from t_goods_type where type_id=#{typeId}
+    </select>
+    
     <insert id="insertGoodsType" parameterType="goodsType">
         insert into t_goods_type 
             <trim prefix="(" suffix=")" suffixOverrides=",">

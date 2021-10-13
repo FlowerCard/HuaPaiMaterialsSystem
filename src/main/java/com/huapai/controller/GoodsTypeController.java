@@ -7,6 +7,7 @@ import com.huapai.entity.ResultVO;
 import com.huapai.service.IGoodsTypeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -44,6 +45,12 @@ public class GoodsTypeController {
     @ResponseBody
     public GoodsType searchType(Integer id){
         return goodsTypeService.searchById(id);
+    }
+
+    @GetMapping("/addType/{typeId}")
+    @ResponseBody
+    public Boolean existTypeId(@PathVariable Integer typeId){
+        return goodsTypeService.existTypeId(typeId);
     }
     
     @RequestMapping("/addType")

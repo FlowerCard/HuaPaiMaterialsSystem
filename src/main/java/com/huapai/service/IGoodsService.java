@@ -26,6 +26,13 @@ public interface IGoodsService {
     public Goods queryById(Integer id);
 
     /**
+     * 商品id是否存在
+     * @param goodsId 商品id
+     * @return 是否存在
+     */
+    public Boolean existGoodsId(Integer goodsId);
+
+    /**
      * 增加商品
      * @param goods 商品对象
      */

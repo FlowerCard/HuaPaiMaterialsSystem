@@ -28,6 +28,13 @@ public interface IGoodsTypeDao {
     public GoodsType selectById(Integer id);
 
     /**
+     * 通过typeID查询
+     * @param typeId 商品类型id
+     * @return 商品类型
+     */
+    public Integer searchByTypeId(Integer typeId); 
+
+    /**
      * 插入商品类型
      * @param goodsType 商品类型对象
      * @return 受影响行数

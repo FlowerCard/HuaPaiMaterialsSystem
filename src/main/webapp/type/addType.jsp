@@ -34,7 +34,19 @@
 
         <script type="text/javascript">
             $(function () {
-                
+                $("#typeId").change(function (){
+                    var typeId = $("#typeId").val()
+                    $.get("http://localhost/goodsType/addType/" + typeId,function (res){
+                        console.log(res)
+                        if (!res){
+                            $("#hasId").html("<span style='color: red'>编号已存在，请更换</span>")
+                            $("#addBtn").attr("disabled",true)
+                        } else {
+                            $("#hasId").html("<span style='color: green'>编号可用</span>")
+                            $("#addBtn").attr("disabled",false)
+                        }
+                    })
+                })
             })
         </script>
 
@@ -54,6 +66,7 @@
                     <div class="layui-input-inline">
                         <input type="text" name="typeId" id="typeId" required lay-verify="typeId" placeholder="请输入商品类型编号" autocomplete="off"
                                class="layui-input">
+                        <span id="hasId"></span>
                     </div>
                     <div class="layui-form-mid layui-word-aux">请填写4到20位商品编号</div>
                 </div>
@@ -80,7 +93,7 @@
 
                 <div class="layui-form-item">
                     <div class="layui-input-block">
-                        <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1" onsubmit="modify()">提交</button>
+                        <button type="submit" class="layui-btn" lay-submit="" id="addBtn" lay-filter="demo1" onsubmit="modify()">提交</button>
                         <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                     </div>
                 </div>

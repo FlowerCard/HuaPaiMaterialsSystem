@@ -34,7 +34,19 @@
 
         <script type="text/javascript">
             $(function () {
-                
+                $("#goodsId").change(function (){
+                    var goodsId = $("#goodsId").val()
+                    $.get("http://localhost/goods/addGoods/" + goodsId,function (res){
+                        console.log(res)
+                        if (!res){
+                            $("#hasId").html("<span style='color: red'>编号已存在，请更换</span>")
+                            $("#addBtn").attr("disabled",true)
+                        } else {
+                            $("#hasId").html("<span style='color: green'>编号可用</span>")
+                            $("#addBtn").attr("disabled",false)
+                        }
+                    })
+                })
             })
         </script>
 
@@ -65,6 +77,7 @@
                     <div class="layui-input-inline">
                         <input type="text" name="goodsId" id="goodsId" required lay-verify="goodsId" placeholder="请输入商品编号" autocomplete="off"
                                class="layui-input">
+                        <span id="hasId"></span>
                     </div>
                 </div>
 
@@ -110,7 +123,7 @@
 
                 <div class="layui-form-item">
                     <div class="layui-input-block">
-                        <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1" onsubmit="modify()">提交</button>
+                        <button type="submit" class="layui-btn" lay-submit="" id="addBtn" lay-filter="demo1" onsubmit="modify()">提交</button>
                         <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                     </div>
                 </div>

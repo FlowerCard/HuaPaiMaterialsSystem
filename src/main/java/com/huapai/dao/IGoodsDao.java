@@ -28,6 +28,13 @@ public interface IGoodsDao {
     public Goods selectById(Integer id);
 
     /**
+     * goodsId
+     * @param goodsId 商品id
+     * @return 商品id
+     */
+    public Integer selectByGoodsId(Integer goodsId);
+
+    /**
      * 新增商品
      * @param goods 商品对象
      * @return 受影响行数

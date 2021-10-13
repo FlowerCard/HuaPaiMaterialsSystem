@@ -39,6 +39,12 @@ public class GoodsTypeServiceImpl implements IGoodsTypeService {
     }
 
     @Override
+    public Boolean existTypeId(Integer typeId) {
+        Integer searchByTypeId = goodsTypeDao.searchByTypeId(typeId);
+        return searchByTypeId == null;
+    }
+
+    @Override
     public void addGoodsType(GoodsType goodsType) {
         goodsTypeDao.insertGoodsType(goodsType);
     }

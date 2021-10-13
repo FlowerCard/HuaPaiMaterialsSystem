@@ -26,6 +26,13 @@ public interface IGoodsTypeService {
     public GoodsType searchById(Integer id);
 
     /**
+     * 类型id是否存在
+     * @param typeId 类型id
+     * @return 是否存在
+     */
+    public Boolean existTypeId(Integer typeId);
+
+    /**
      * 添加商品类型
      * @param goodsType 商品类型对象
      */

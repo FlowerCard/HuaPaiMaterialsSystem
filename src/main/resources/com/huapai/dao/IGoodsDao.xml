@@ -25,6 +25,10 @@
         where id = #{id}
     </select>
     
+    <select id="selectByGoodsId" resultType="integer">
+        select id from t_goods where goods_id = #{goodsId}
+    </select>
+    
     <insert id="insertGoods" parameterType="goods">
         insert into t_goods 
             <trim prefix="(" suffix=")" suffixOverrides=",">

@@ -26,7 +26,7 @@ public class SourceFilter implements Filter {
         String requestURI = request.getRequestURI();
         if (requestURI.endsWith(".html") || requestURI.endsWith(".css") || requestURI.endsWith(".js")
             || requestURI.endsWith("/login") || requestURI.endsWith("/register") || requestURI.endsWith("/login.jsp")
-                 || requestURI.endsWith("/register.jsp")
+                 || requestURI.endsWith("/register.jsp") || requestURI.contains("/img/")
         ) {
             filterChain.doFilter(request,response);
             return;

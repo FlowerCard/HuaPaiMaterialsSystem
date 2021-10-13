@@ -42,6 +42,12 @@ public class GoodsServiceImpl implements IGoodsService {
     }
 
     @Override
+    public Boolean existGoodsId(Integer goodsId) {
+        Integer selectByGoodsId = goodsDao.selectByGoodsId(goodsId);
+        return selectByGoodsId == null;
+    }
+
+    @Override
     public void addGoods(Goods goods) {
         goodsDao.insertGoods(goods);
     }
