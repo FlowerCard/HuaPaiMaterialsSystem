@@ -42,6 +42,11 @@ public class GoodsServiceImpl implements IGoodsService {
     }
 
     @Override
+    public List<Goods> queryByName(String goodsName) {
+        return goodsDao.selectByGoodsName(goodsName);
+    }
+
+    @Override
     public Boolean existGoodsId(Integer goodsId) {
         Integer selectByGoodsId = goodsDao.selectByGoodsId(goodsId);
         return selectByGoodsId == null;

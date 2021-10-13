@@ -35,6 +35,13 @@ public interface IGoodsDao {
     public Integer selectByGoodsId(Integer goodsId);
 
     /**
+     * 通过名字查询
+     * @param goodsName 商品名称
+     * @return 对象集合
+     */
+    public List<Goods> selectByGoodsName(String goodsName);
+
+    /**
      * 新增商品
      * @param goods 商品对象
      * @return 受影响行数

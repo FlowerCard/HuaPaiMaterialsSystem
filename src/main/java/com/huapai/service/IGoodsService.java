@@ -26,6 +26,13 @@ public interface IGoodsService {
     public Goods queryById(Integer id);
 
     /**
+     * 通过名字查询
+     * @param goodsName 商品名称
+     * @return 对象集合
+     */
+    public List<Goods> queryByName(String goodsName);
+
+    /**
      * 商品id是否存在
      * @param goodsId 商品id
      * @return 是否存在

@@ -1,5 +1,6 @@
 package com.huapai.controller;
 
+import com.alibaba.druid.util.StringUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.huapai.entity.Goods;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,10 +30,18 @@ public class GoodsController {
     @Resource
     private IGoodsService goodsService;
     
-    @GetMapping("/allGoods")
+    @GetMapping("/allGoods/{goodsName}")
     @ResponseBody
-    public ResultVO searchAll(Integer page, Integer limit){
-        List<Goods> goodsList = goodsService.queryAll();
+    public ResultVO searchAll(Integer page, Integer limit,@PathVariable String goodsName){
+        List<Goods> goodsList = new ArrayList<>();
+        if ("undefined".equals(goodsName)) {
+            goodsName = null;
+        }
+        if (StringUtils.isEmpty(goodsName)) {
+            goodsList = goodsService.queryAll();
+        } else {
+            goodsList = goodsService.queryByName(goodsName);
+        }
         PageHelper.startPage(page,limit);
         PageInfo<Goods> pageInfo = new PageInfo<>(goodsList);
         ResultVO resultVO = new ResultVO();

@@ -25,6 +25,12 @@
         where id = #{id}
     </select>
     
+    <select id="selectByGoodsName" resultMap="goodsMap">
+        select id, goods_id, goods_name, goods_price, goods_num, goods_type, user_id, goods_info
+        from t_goods
+        where goods_name like concat('%',#{goodsName},'%')
+    </select>
+    
     <select id="selectByGoodsId" resultType="integer">
         select id from t_goods where goods_id = #{goodsId}
     </select>

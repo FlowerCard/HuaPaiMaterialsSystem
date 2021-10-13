@@ -25,6 +25,12 @@
                 <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
                 <button class="layui-btn layui-btn-sm layui-btn-warm" id="addGoods" lay-event="addGoods">新增</button>
             </div>
+            <div class="layui-layer-input">
+                <div class="layui-input-inline">
+                    <input type="text" id="searchGoods" placeholder="请输入商品名称" autocomplete="off" class="layui-input">
+                </div>
+                <button class="layui-btn layui-btn-sm layui-btn-normal" id="searchName" lay-event="searchName">搜索</button>
+            </div>
         </script>
 
         <script type="text/html" id="barDemo">
@@ -35,13 +41,20 @@
         </script>
 
         <script>
+
+            var goodsName;
+            
+            $("#searchGoods").change(function (){
+                goodsName = $("#searchGoods").val();
+            })
+            
             layui.use(['table','layer'], function(){
                 var table = layui.table;
                 var layer = layui.layer;
 
                 table.render({
                     elem: '#test'
-                    ,url:'http://localhost/goods/allGoods'
+                    ,url:'http://localhost/goods/allGoods/' + goodsName
                     ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
                     ,defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
                         title: '提示'
@@ -89,6 +102,10 @@
                             break;
                         case 'addGoods':
                             location.href="addGoods.jsp";
+                            break;
+                        case 'searchName':
+                            var name = $("#searchGoods").val()
+                            $.get("http://localhost/goods/allGoods/" + goodsName)
                             break;
 
                         //自定义头工具栏右侧图标 - 提示
